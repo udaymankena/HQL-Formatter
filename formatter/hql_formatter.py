@@ -27,7 +27,7 @@ def get_spaced_line(words):  # adds a space to the end of each word
         line = line + word + " "
     return line
 
-
+"""
 def to_be_formatted(word):
     if word.upper() in key_words:
         word = word.upper()
@@ -35,25 +35,29 @@ def to_be_formatted(word):
         for kw in keywords:
             reg_exp = kw + '[(\n;]'
             if (re.search(reg_exp, word != None)
+"""
 
 
 def get_formatted_line(line):  # capitalizes the KEYWORDS in a line
     words = line.split(" ")
-    for word in words:
-        if word.upper() in key_words:
-            word = word.upper()
+    for i in range(len(words)):
+        if words[i].upper() in key_words:
+            words[i] = words[i].upper()
+        if (words[i].upper() + "(") in hive_funcs:
+            words[i] = words[i].upper()
     return get_spaced_line(words)
 
 
 ################################################
-ip_file = "Mdcl_pharmacy.hql"
+ip_file = "/Users/A088062/Code/Git/HQL-Formatter/resources/test.hql"
 
 op_file = get_op_file_name()  # appends "_op" to the ip_file
 
 op_file_obj = open(op_file, "w")
 
-KEY_FILE = "hive_keywords.txt"
+KEY_FILE = "/Users/A088062/Code/Git/HQL-Formatter/resources/hive_keywords.txt"
 key_words = keywords()
+hive_funcs = ["MIN", "MAX", "COUNT", "SUBSTRING", "ROW_NUMBER" ]
 
 ######################################
 
